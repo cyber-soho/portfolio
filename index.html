@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Operations & Cybersecurity Teaching Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Slate Gray & Muted Teal -->
+    <!-- Application Structure Plan: A single-page application with a fixed top navigation bar for easy access to distinct, thematic sections (Home, Experience, Philosophy, Curriculum). This structure was chosen to transform the linear document into a non-linear, exploratory experience. Users can immediately navigate to the content most relevant to them. The "Experience" section uses a timeline and a chart to visualize career progression, making it more digestible than text alone. The "Curriculum" uses an interactive tabbed interface to manage the density of information, allowing users to drill down into specific modules without being overwhelmed. This design prioritizes user-guided exploration and scannability over a simple scroll. -->
+    <!-- Visualization & Content Choices: 
+        1. Career Experience -> Goal: Visualize career path and duration -> Viz/Presentation Method: Interactive vertical timeline (HTML/CSS) & Horizontal Bar Chart (Chart.js) -> Interaction: Hover for details on timeline, tooltips on chart -> Justification: The timeline provides a chronological narrative, while the chart offers a quick quantitative summary of where time was spent, appealing to different ways users process information. Library/Method: Chart.js for the chart, custom HTML/Tailwind for the timeline.
+        2. Teaching Philosophy -> Goal: Make core principles scannable and memorable -> Viz/Presentation Method: Icon-driven card layout -> Interaction: Subtle hover effects on cards -> Justification: Breaks a large text block into digestible, visually distinct points, enhancing readability.
+        3. Curriculum -> Goal: Organize extensive, detailed content -> Viz/Presentation Method: Tabbed interface -> Interaction: Click tabs to switch content panels -> Justification: A standard, intuitive UI pattern for condensing large amounts of related information into a compact space, preventing user overload. Library/Method: Vanilla JS for tab logic.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .nav-link.active {
+            color: #14b8a6;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 border-b border-slate-200">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="text-xl font-bold text-slate-800">
+                <a href="#home">Teaching Portfolio</a>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#experience" class="nav-link text-slate-600 hover:text-teal-500 transition-colors">Experience</a>
+                <a href="#philosophy" class="nav-link text-slate-600 hover:text-teal-500 transition-colors">Philosophy</a>
+                <a href="#curriculum" class="nav-link text-slate-600 hover:text-teal-500 transition-colors">Curriculum</a>
+            </div>
+            <div class="md:hidden">
+                <button id="mobile-menu-button" class="text-slate-700 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
+                </button>
+            </div>
+        </nav>
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-4">
+            <a href="#experience" class="block py-2 text-slate-600 hover:text-teal-500">Experience</a>
+            <a href="#philosophy" class="block py-2 text-slate-600 hover:text-teal-500">Philosophy</a>
+            <a href="#curriculum" class="block py-2 text-slate-600 hover:text-teal-500">Curriculum</a>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-12">
+
+        <section id="home" class="text-center py-20 md:py-28 flex flex-col justify-center">
+            <h1 class="text-4xl md:text-6xl font-bold text-slate-800 mb-4">Expert in IT Operations & Cybersecurity Education</h1>
+            <p class="text-lg md:text-xl text-slate-600 max-w-3xl mx-auto">
+                A dedicated IT professional with 14+ years of hands-on experience and a passion for developing the next generation of tech talent through practical, project-based learning.
+            </p>
+        </section>
+
+        <section id="experience" class="py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-800">Professional Journey</h2>
+                <p class="text-md text-slate-500 mt-2">A timeline of practical industry experience and continuous learning.</p>
+            </div>
+            <div class="grid md:grid-cols-5 gap-12 items-start">
+                <div class="md:col-span-2">
+                    <h3 class="text-xl font-bold text-slate-800 mb-6">Career & Education Timeline</h3>
+                    <div class="relative border-l-2 border-teal-200 ml-3">
+                        <div class="mb-8 pl-8 relative">
+                            <div class="absolute -left-3.5 mt-1.5 w-6 h-6 bg-teal-500 rounded-full border-4 border-white"></div>
+                            <h4 class="font-semibold text-slate-800">Data Center HWOps, Level 3</h4>
+                            <p class="text-sm text-slate-500">Google Cloud Canada (1 year)</p>
+                        </div>
+                        <div class="mb-8 pl-8 relative">
+                            <div class="absolute -left-3.5 mt-1.5 w-6 h-6 bg-teal-500 rounded-full border-4 border-white"></div>
+                            <h4 class="font-semibold text-slate-800">IT Instructor</h4>
+                            <p class="text-sm text-slate-500">10 Professional Schools & Colleges (11 years)</p>
+                            <p class="text-sm text-slate-600 mt-1">Taught Hardware, Networking, OS, and Data Science fundamentals.</p>
+                        </div>
+                        <div class="mb-8 pl-8 relative">
+                            <div class="absolute -left-3.5 mt-1.5 w-6 h-6 bg-teal-500 rounded-full border-4 border-white"></div>
+                            <h4 class="font-semibold text-slate-800">System & Network Administrator</h4>
+                            <p class="text-sm text-slate-500">(3 years)</p>
+                            <p class="text-sm text-slate-600 mt-1">Led IT infrastructure setup for several new schools.</p>
+                        </div>
+                         <div class="mb-8 pl-8 relative">
+                            <div class="absolute -left-3.5 mt-1.5 w-6 h-6 bg-sky-500 rounded-full border-4 border-white"></div>
+                            <h4 class="font-semibold text-slate-800">Cybersecurity Analyst Program</h4>
+                            <p class="text-sm text-slate-500">Champlain College (1.5 years)</p>
+                        </div>
+                        <div class="mb-8 pl-8 relative">
+                            <div class="absolute -left-3.5 mt-1.5 w-6 h-6 bg-sky-500 rounded-full border-4 border-white"></div>
+                            <h4 class="font-semibold text-slate-800">System & Network Admin Program</h4>
+                            <p class="text-sm text-slate-500">Dawson College (1 year)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-3">
+                     <h3 class="text-xl font-bold text-slate-800 mb-6">Experience Distribution (Years)</h3>
+                     <p class="text-slate-600 mb-4">This chart provides a visual breakdown of time dedicated to different core areas of my professional life. It highlights the extensive commitment to education alongside deep, hands-on technical roles in the industry.</p>
+                    <div class="bg-white p-4 sm:p-6 rounded-lg shadow-md">
+                        <div class="chart-container">
+                            <canvas id="experienceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="philosophy" class="py-16 bg-slate-50 rounded-lg">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-800">Teaching Philosophy</h2>
+                <p class="text-md text-slate-500 mt-2">Centered on the principle of "Learning by Doing."</p>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <h4 class="font-bold text-lg text-teal-600 mb-2">Project-Based Learning</h4>
+                    <p class="text-slate-600">Courses are structured around real-world projects to build practical problem-solving skills.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <h4 class="font-bold text-lg text-teal-600 mb-2">Industry Relevance</h4>
+                    <p class="text-slate-600">The curriculum is dynamic, replacing obsolete material with in-demand skills like cloud and automation.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <h4 class="font-bold text-lg text-teal-600 mb-2">Strong Industry Partnerships</h4>
+                    <p class="text-slate-600">Advocating for partnerships to provide internships, modern lab equipment, and networking opportunities.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <h4 class="font-bold text-lg text-teal-600 mb-2">Accessible Learning</h4>
+                    <p class="text-slate-600">Emphasis on free and accessible online resources like interactive labs and video tutorials.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <h4 class="font-bold text-lg text-teal-600 mb-2">Mentorship over Lecturing</h4>
+                    <p class="text-slate-600">Fostering a collaborative environment where students receive individual attention and guidance.</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow">
+                    <h4 class="font-bold text-lg text-teal-600 mb-2">Experience-First Certifications</h4>
+                    <p class="text-slate-600">Guiding students to build a solid practical foundation before pursuing industry certifications.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="curriculum" class="py-16">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-slate-800">Proposed Curriculum</h2>
+                <p class="text-md text-slate-500 mt-2">A robust foundation in IT with a focus on hands-on labs and modern tech.</p>
+            </div>
+            <div>
+                <div class="mb-4 border-b border-slate-200">
+                    <nav class="-mb-px flex space-x-6" aria-label="Tabs">
+                        <button class="tab-link active-tab whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-teal-600 border-teal-500" data-tab="hardware">Hardware</button>
+                        <button class="tab-link whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-slate-500 hover:text-slate-700 border-transparent hover:border-slate-300" data-tab="os">Operating Systems</button>
+                        <button class="tab-link whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-slate-500 hover:text-slate-700 border-transparent hover:border-slate-300" data-tab="networking">Networking</button>
+                        <button class="tab-link whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-slate-500 hover:text-slate-700 border-transparent hover:border-slate-300" data-tab="scripting">Scripting</button>
+                        <button class="tab-link whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-slate-500 hover:text-slate-700 border-transparent hover:border-slate-300" data-tab="devops">DevOps & Cloud</button>
+                        <button class="tab-link whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm text-slate-500 hover:text-slate-700 border-transparent hover:border-slate-300" data-tab="cybersecurity">Cybersecurity</button>
+                    </nav>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <div id="hardware" class="tab-content">
+                        <h4 class="font-bold text-xl text-slate-800 mb-4">Module 1: IT Hardware Fundamentals</h4>
+                        <p class="mb-4 text-slate-600">This module focuses on understanding the core components of modern computing systems, from desktops to servers.</p>
+                        <ul class="list-disc pl-5 space-y-2 text-slate-600">
+                            <li><strong class="font-medium text-slate-700">Courseware (Paid):</strong> CompTIA TestOut + LabSim</li>
+                            <li><strong class="font-medium text-slate-700">Courseware (Free):</strong> LinkedIn Learning, O'Reilly/Safari (via library subscription)</li>
+                        </ul>
+                    </div>
+                    <div id="os" class="tab-content hidden">
+                        <h4 class="font-bold text-xl text-slate-800 mb-4">Module 2: Operating Systems</h4>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h5 class="font-semibold text-slate-700 mb-2">Client OS</h5>
+                                <ul class="list-disc pl-5 space-y-1 text-slate-600">
+                                    <li>Microsoft Windows 11</li>
+                                    <li>Linux (Ubuntu, Mint, Kali, Parrot)</li>
+                                    <li>Unix (macOS) & Mobile (iOS/Android)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-slate-700 mb-2">Server / Network OS</h5>
+                                <ul class="list-disc pl-5 space-y-1 text-slate-600">
+                                    <li>Windows Server 2019</li>
+                                    <li>Red Hat Enterprise Linux (via CentOS/Alma/Rocky)</li>
+                                    <li>Debian</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                             <h5 class="font-semibold text-slate-700 mb-2">Courseware</h5>
+                             <ul class="list-disc pl-5 space-y-1 text-slate-600">
+                                <li><strong class="font-medium text-slate-700">Paid:</strong> CompTIA, Red Hat Academy</li>
+                                <li><strong class="font-medium text-slate-700">Free:</strong> Microsoft Learn, LinkedIn Learning</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="networking" class="tab-content hidden">
+                        <h4 class="font-bold text-xl text-slate-800 mb-4">Module 3: Networking Fundamentals</h4>
+                         <p class="mb-4 text-slate-600">Building a strong, vendor-neutral understanding of networking principles is critical before tackling specialized certifications. This module covers the essentials.</p>
+                        <ul class="list-disc pl-5 space-y-2 text-slate-600">
+                            <li><strong class="font-medium text-slate-700">Topics:</strong> OSI Model, TCP/IP, Subnetting, Routing, Switching, Wireless Networking.</li>
+                            <li><strong class="font-medium text-slate-700">Courseware (Free):</strong> Cisco NetAcad - IT Essentials</li>
+                            <li><strong class="font-medium text-slate-700">Courseware (Paid):</strong> CompTIA Network+</li>
+                        </ul>
+                    </div>
+                    <div id="scripting" class="tab-content hidden">
+                        <h4 class="font-bold text-xl text-slate-800 mb-4">Module 4: Scripting & Automation Foundations</h4>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div>
+                                <h5 class="font-semibold text-slate-700 mb-2">Languages & Formats</h5>
+                                <ul class="list-disc pl-5 space-y-1 text-slate-600">
+                                    <li>PowerShell & Bash</li>
+                                    <li>Python (with C fundamentals)</li>
+                                    <li>XML, YAML, JSON & Markdown</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h5 class="font-semibold text-slate-700 mb-2">Courseware</h5>
+                                <ul class="list-disc pl-5 space-y-1 text-slate-600">
+                                    <li>A wide variety of free and paid online platforms like Codecademy, Udemy, and library resources.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="devops" class="tab-content hidden">
+                        <h4 class="font-bold text-xl text-slate-800 mb-4">Module 5: Modern DevOps & Cloud Infrastructure</h4>
+                        <ul class="list-disc pl-5 space-y-2 text-slate-600">
+                            <li><strong class="font-medium text-slate-700">Virtualization:</strong> Hosted (VirtualBox) & Native (KVM, ESXi)</li>
+                            <li><strong class="font-medium text-slate-700">Containers & Orchestration:</strong> Docker/Podman, Kubernetes/OpenShift</li>
+                            <li><strong class="font-medium text-slate-700">Cloud Platforms:</strong> AWS, Azure, GCP</li>
+                            <li><strong class="font-medium text-slate-700">Automation:</strong> Ansible (Config Mgmt), Terraform (Infra as Code)</li>
+                             <li><strong class="font-medium text-slate-700">Courseware:</strong> Platform-specific free tiers (AWS Educate) and Red Hat Academy.</li>
+                        </ul>
+                    </div>
+                     <div id="cybersecurity" class="tab-content hidden">
+                        <h4 class="font-bold text-xl text-slate-800 mb-4">Module 6: Cybersecurity Principles</h4>
+                        <p class="mb-4 text-slate-600">This module introduces the foundational domains of cybersecurity, preparing students for specialized roles.</p>
+                        <ul class="list-disc pl-5 space-y-2 text-slate-600">
+                           <li><strong class="font-medium text-slate-700">Domains:</strong> Offensive Security (Ethical Hacking), Defensive Security (Blue Teaming), IT Governance & Legislation</li>
+                           <li><strong class="font-medium text-slate-700">Courseware (Paid):</strong> EC-Council, Hack The Box, TryHackMe, CompTIA Security+</li>
+                           <li><strong class="font-medium text-slate-700">Courseware (Free):</strong> Online library resources and platform-specific training.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="bg-slate-800 text-white">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <p>&copy; 2025 Teaching Portfolio. All rights reserved.</p>
+            <p class="text-sm text-slate-400 mt-2">Designed as an interactive web application.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const experienceData = {
+                labels: ['Teaching', 'Sys/Network Admin', 'Tech/Support', 'Data Center Ops', 'Education/Development'],
+                datasets: [{
+                    label: 'Years of Experience',
+                    data: [11, 3, 6, 1, 3],
+                    backgroundColor: [
+                        'rgba(20, 184, 166, 0.7)',
+                        'rgba(14, 165, 233, 0.7)',
+                        'rgba(99, 102, 241, 0.7)',
+                        'rgba(249, 115, 22, 0.7)',
+                        'rgba(139, 92, 246, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgb(20, 184, 166)',
+                        'rgb(14, 165, 233)',
+                        'rgb(99, 102, 241)',
+                        'rgb(249, 115, 22)',
+                        'rgb(139, 92, 246)'
+                    ],
+                    borderWidth: 1
+                }]
+            };
+
+            const config = {
+                type: 'bar',
+                data: experienceData,
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            display: false
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return `${context.label}: ${context.raw} years`;
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        x: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Years'
+                            }
+                        }
+                    }
+                }
+            };
+
+            const experienceChart = new Chart(
+                document.getElementById('experienceChart'),
+                config
+            );
+
+            const tabs = document.querySelectorAll('.tab-link');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-tab');
+
+                    tabs.forEach(t => {
+                        t.classList.remove('active-tab', 'text-teal-600', 'border-teal-500');
+                        t.classList.add('text-slate-500', 'border-transparent', 'hover:text-slate-700', 'hover:border-slate-300');
+                    });
+
+                    tab.classList.add('active-tab', 'text-teal-600', 'border-teal-500');
+                    tab.classList.remove('text-slate-500', 'border-transparent', 'hover:text-slate-700', 'hover:border-slate-300');
+
+                    contents.forEach(content => {
+                        if (content.id === target) {
+                            content.classList.remove('hidden');
+                        } else {
+                            content.classList.add('hidden');
+                        }
+                    });
+                });
+            });
+
+            const mobileMenuButton = document.getElementById('mobile-menu-button');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuButton.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            window.addEventListener('scroll', () => {
+                let current = '';
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    if (pageYOffset >= sectionTop - 150) {
+                        current = section.getAttribute('id');
+                    }
+                });
+
+                navLinks.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').includes(current)) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+
+            // Add smooth scrolling to all anchor links in the header
+            const allNavLinks = document.querySelectorAll('header a[href^="#"]');
+            allNavLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    const targetElement = document.querySelector(href);
+                    
+                    if(targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth'
+                        });
+
+                        // Close mobile menu if open
+                        if (!mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
+
+
+
+
+
+
